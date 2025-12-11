@@ -1,0 +1,186 @@
+body {
+    margin: 0;
+    background: #121212;
+    color: white;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.container {
+    width: 90%;
+    margin: 40px auto;
+}
+
+/* ----------- TÍTULO ----------- */
+
+h1 {
+    text-align: center;
+    color: #9B4BFF;
+    margin-bottom: 25px;
+}
+
+/* ----------- FORMULÁRIO ----------- */
+
+.form-card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    background: #1E1E1E;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.form-card input,
+.form-card select {
+    padding: 12px;
+    background: #121212;
+    border: 2px solid #7A00F5;
+    border-radius: 6px;
+    color: white;
+    font-size: 15px;
+}
+
+button {
+    background: #7A00F5;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #9B4BFF;
+}
+
+/* ----------- TOTAIS ----------- */
+
+.totais-box {
+    margin: 15px 0;
+    padding: 15px;
+    background: #1E1E1E;
+    border-left: 4px solid #9B4BFF;
+    border-radius: 8px;
+}
+
+.totais-box p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+/* ----------- TABELA ----------- */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    background: #1E1E1E;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px;
+    border-bottom: 1px solid #444;
+    font-size: 15px;
+}
+
+th {
+    background: #7A00F5;
+}
+
+/* Categoria visual */
+.categoria-header {
+    background: #9B4BFF !important;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 12px !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.action-btn {
+    padding: 7px 12px;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background: #0099ff;
+}
+
+.edit-btn:hover {
+    background: #33adff;
+}
+
+.delete-btn {
+    background: #ff0033;
+}
+
+.export-btn {
+    background: #00aa00;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+}
+
+/* TOP ROW (codigo) */
+.top-row {
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:12px;
+}
+.code-badge {
+    background:#222;
+    padding:8px 12px;
+    border-radius:8px;
+    border:1px solid #7A00F5;
+    font-weight:700;
+}
+.small {
+    font-size:13px;
+    opacity:0.9;
+}
+
+/* MOBILE */
+
+@media (max-width: 850px) {
+    .form-card {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .form-card {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card input,
+    .form-card select {
+        font-size: 17px;
+        padding: 14px;
+    }
+
+    button {
+        padding: 14px;
+        font-size: 17px;
+    }
+
+    .totais-box {
+        text-align: center;
+    }
+
+    .totais-box p {
+        font-size: 18px;
+    }
+}
