@@ -183,4 +183,52 @@ th {
     .totais-box p {
         font-size: 18px;
     }
+
+    /* =============================
+   MOBILE
+   ============================= */
+
+@media (max-width: 850px) {
+    .form-card {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
+
+@media (max-width: 600px) {
+    .form-card {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .top-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #codigoInput {
+        width: 100%;
+    }
+
+    .top-row button {
+        width: 100%;
+    }
+
+    .export-btn {
+        font-size: 16px;
+    }
+
+    table {
+        min-width: 800px;
+    }
+}
+}
+
