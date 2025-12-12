@@ -209,8 +209,8 @@ function atualizarTabela() {
             <td>${item.fixo}</td>
             <td>${item.obs}</td>
             <td>
-                <button class="action-btn edit-btn" onclick="editar(${realIndex})">✏️</button>
-                <button class="action-btn delete-btn" onclick="apagar(${realIndex})">🗑️</button>
+                <button class="action-btn edit-btn" onclick="editar(${realIndex})">editar</button>
+                <button class="action-btn delete-btn" onclick="apagar(${realIndex})">apagar</button>
             </td>
         `;
 
