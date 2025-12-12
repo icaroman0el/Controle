@@ -344,6 +344,7 @@ function atualizarPreview() {
 
 /* ====== Exportar funções para o escopo global (para os onclicks inline) ====== */
 window.adicionar = adicionar;
-window.editar = editar;
-window.apagar = apagar;
+window.editar = ✏️;
+window.apagar = 🗑️;
 window.exportarXLSX = exportarXLSX;
+
