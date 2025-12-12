@@ -3,39 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Controle Doméstico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
 
     <!-- XLSX -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
+
 <body>
 
-<div class="container">
-
-    <h1>Controle de Gastos Domésticos</h1>
-
-    <!-- TOP: código da lista (opção C: gerar ou digitar) -->
-    <div class="top-row">
-        <div>
-            <span class="small">Código da Lista</span>
-            <div class="code-badge" id="codigoBadge">—</div>
-        </div>
-
-        <div style="margin-left:auto; display:flex; gap:8px; align-items:center;">
-            <input id="codigoInput" placeholder="Entrar com outro código" style="padding:8px; background:#121212; border:1px solid #7A00F5; border-radius:6px; color:white;" />
-            <button id="loadBtn">Carregar</button>
-            <button id="newBtn">Gerar novo</button>
-            <button id="copyCodeBtn" title="Copiar código">Copiar</button>
-        </div>
+<header class="topbar">
+    <div class="code-box">
+        <span>Código da Lista</span>
+        <strong id="codigoBadge">—</strong>
     </div>
 
-    <div class="form-card">
+    <div class="code-actions">
+        <input id="codigoInput" placeholder="Digite um código">
+        <button id="loadBtn">Carregar</button>
+        <button id="newBtn" class="accent">Novo</button>
+        <button id="copyCodeBtn">Copiar</button>
+    </div>
+</header>
+
+
+<main class="container">
+
+    <h1 class="title">Controle de Gastos</h1>
+
+    <!-- FORM -->
+    <div class="card form-card">
+
         <input type="date" id="data">
 
         <input type="text" id="descricao" placeholder="Descrição">
 
         <select id="categoria">
-            <option value="" disabled selected>Categoria</option>
+            <option disabled selected>Categoria</option>
             <option>Mercado</option>
             <option>Contas da Casa</option>
             <option>Transporte</option>
@@ -68,40 +72,40 @@
 
         <input type="text" id="obs" placeholder="Observações (opcional)">
 
-        <button id="addBtn" onclick="adicionar()">Adicionar</button>
+        <button id="addBtn" onclick="adicionar()" class="accent">Adicionar</button>
     </div>
 
-    <div class="totais-box">
-        <p><strong>Total de Entradas:</strong> R$ <span id="totalEntradas">0,00</span></p>
-        <p><strong>Total de Saídas:</strong> R$ <span id="totalSaidas">0,00</span></p>
-        <p><strong>Saldo:</strong> R$ <span id="saldo">0,00</span></p>
+
+    <!-- TOTALS -->
+    <div class="card totals">
+        <p>Entradas: <strong id="totalEntradas">0,00</strong></p>
+        <p>Saídas: <strong id="totalSaidas">0,00</strong></p>
+        <p>Saldo: <strong id="saldo">0,00</strong></p>
     </div>
 
-    <div class="table-wrapper">
-        <table id="tabela">
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Descrição</th>
-                    <th>Categoria</th>
-                    <th>Tipo</th>
-                    <th>Valor</th>
-                    <th>Pagamento</th>
-                    <th>Fixo/Variável</th>
-                    <th>Obs</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+    <!-- TABLE -->
+    <div class="card">
+        <div class="mobile-table" id="mobileList"></div>
+
+        <div class="table-wrapper">
+            <table id="tabela">
+                <thead>
+                    <tr>
+                        <th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th>
+                        <th>Valor</th><th>Pagamento</th><th>Fixo/Var</th><th>Obs</th><th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 
     <button class="export-btn" onclick="exportarXLSX()">Exportar XLSX</button>
 
-    <h2 style="margin-top: 40px;">Preview da Planilha</h2>
-    <div id="preview" class="table-wrapper"></div>
+    <h2>Preview da Planilha</h2>
+    <div id="preview" class="card"></div>
 
-</div>
+</main>
 
 <script type="module" src="script.js"></script>
 </body>
