@@ -1,199 +1,101 @@
-/* ======= RESET ======= */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-    background: #0d0d0f;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background: #0f0f0f;
     color: white;
-    font-family: "Inter", Arial, sans-serif;
 }
 
-/* ======= TOP BAR ======= */
-
-.topbar {
+/* Container geral */
+.container {
     width: 100%;
-    background: #18181c;
+    max-width: 480px;
+    margin: auto;
+    padding: 16px;
+}
+
+/* Títulos */
+h2, h3 {
+    text-align: center;
+    font-weight: 700;
+    color: #b874ff;
+    margin-bottom: 12px;
+}
+
+/* Cards escuros */
+.card {
+    background: #1a1a1a;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+    font-size: 14px;
+    color: #c2c2c2;
+    margin-left: 4px;
+}
+
+/* Inputs */
+input, select, textarea {
+    width: 100%;
+    background: #0f0f0f;
+    border: 2px solid #7a29ff;
+    border-radius: 10px;
     padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border-bottom: 2px solid #7a00f5;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.code-box span {
-    font-size: 13px;
-    opacity: 0.7;
-}
-.code-box strong {
-    font-size: 20px;
-    font-weight: 900;
-    color: #c48bff;
-}
-
-.code-actions {
-    display: flex;
-    gap: 8px;
-}
-
-.code-actions input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #7a00f5;
-    background: #111;
     color: white;
-}
-
-/* BOTÕES PADRÕES */
-
-button {
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: none;
-    background: #333;
-    color: white;
+    margin-top: 4px;
+    margin-bottom: 12px;
     font-size: 15px;
+}
+
+/* Botões */
+button {
+    width: 100%;
+    background: #7a29ff;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    margin-top: 6px;
+    cursor: pointer;
     font-weight: 600;
 }
 
-button.accent {
-    background: #7a00f5;
-}
-button.accent:active {
-    background: #9b4bff;
+button:active {
+    opacity: 0.7;
 }
 
-/* ======= CONTAINER ======= */
-.container {
-    width: 92%;
-    margin: 20px auto;
+/* Botão verde (exportar) */
+.btn-green {
+    background: #28c445;
 }
 
-/* ======= TITULO ======= */
-
-.title {
-    text-align: center;
-    color: #c48bff;
-    margin-bottom: 20px;
-    font-size: 26px;
-}
-
-/* ======= CARDS ======= */
-
-.card {
-    background: #18181c;
-    padding: 18px;
+/* Pré-visualização da planilha */
+.table-preview {
+    width: 100%;
+    background: #1a1a1a;
     border-radius: 14px;
-    margin-bottom: 18px;
-    box-shadow: 0px 0px 12px rgba(0,0,0,0.4);
-}
-
-/* ======= FORM ======= */
-
-.form-card {
-    display: grid;
-    gap: 12px;
-}
-
-.form-card input,
-.form-card select {
-    padding: 14px;
-    border-radius: 10px;
-    background: #111;
-    color: white;
-    border: 2px solid #7a00f5;
-    font-size: 16px;
-}
-
-/* ======= TOTALS ======= */
-
-.totals p {
-    font-size: 17px;
-    margin-bottom: 6px;
-}
-
-/* ======= TABLE DESKTOP ======= */
-
-.table-wrapper {
+    padding: 12px;
     overflow-x: auto;
 }
 
-table {
+.table-preview table {
     width: 100%;
-    min-width: 900px;
     border-collapse: collapse;
-}
-
-th {
-    background: #7a00f5;
-    padding: 14px;
-    text-align: left;
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid #333;
-}
-
-.action-btn {
-    padding: 6px 10px;
-    border-radius: 6px;
     font-size: 14px;
 }
 
-.edit-btn {
-    background: #0099ff;
+.table-preview th,
+.table-preview td {
+    padding: 8px;
+    border-bottom: 1px solid #333;
+    white-space: nowrap;
 }
 
-.delete-btn {
-    background: #ff0033;
+.table-preview thead {
+    background: #7a29ff33;
 }
 
-/* ======= MOBILE LIST ======= */
-
-.mobile-table {
-    display: none;
-}
-
-@media (max-width: 750px) {
-
-    .table-wrapper { display: none; }
-
-    .mobile-table {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .mob-item {
-        background: #111;
-        padding: 14px;
-        border-radius: 12px;
-        border: 1px solid #7a00f5;
-    }
-
-    .mob-top {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 6px;
-        font-weight: bold;
-    }
-
-    .mob-actions {
-        margin-top: 10px;
-        display: flex;
-        gap: 8px;
-    }
-}
-
-/* EXPORTAR */
-
-.export-btn {
-    background: #00aa00;
-    padding: 14px;
-    width: 100%;
-    border-radius: 10px;
-    font-size: 17px;
-}
