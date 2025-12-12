@@ -1,79 +1,122 @@
+/* ======= RESET ======= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-    margin: 0;
-    background: #121212;
+    background: #0d0d0f;
     color: white;
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: "Inter", Arial, sans-serif;
 }
 
+/* ======= TOP BAR ======= */
+
+.topbar {
+    width: 100%;
+    background: #18181c;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 2px solid #7a00f5;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.code-box span {
+    font-size: 13px;
+    opacity: 0.7;
+}
+.code-box strong {
+    font-size: 20px;
+    font-weight: 900;
+    color: #c48bff;
+}
+
+.code-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.code-actions input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #7a00f5;
+    background: #111;
+    color: white;
+}
+
+/* BOTÕES PADRÕES */
+
+button {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #333;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+button.accent {
+    background: #7a00f5;
+}
+button.accent:active {
+    background: #9b4bff;
+}
+
+/* ======= CONTAINER ======= */
 .container {
-    width: 90%;
-    margin: 40px auto;
+    width: 92%;
+    margin: 20px auto;
 }
 
-/* ----------- TÍTULO ----------- */
+/* ======= TITULO ======= */
 
-h1 {
+.title {
     text-align: center;
-    color: #9B4BFF;
-    margin-bottom: 25px;
+    color: #c48bff;
+    margin-bottom: 20px;
+    font-size: 26px;
 }
 
-/* ----------- FORMULÁRIO ----------- */
+/* ======= CARDS ======= */
+
+.card {
+    background: #18181c;
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.4);
+}
+
+/* ======= FORM ======= */
 
 .form-card {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
-    background: #1E1E1E;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 25px;
 }
 
 .form-card input,
 .form-card select {
-    padding: 12px;
-    background: #121212;
-    border: 2px solid #7A00F5;
-    border-radius: 6px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #111;
     color: white;
-    font-size: 15px;
-}
-
-button {
-    background: #7A00F5;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-    transition: 0.2s;
-    font-size: 15px;
-}
-
-button:hover {
-    background: #9B4BFF;
-}
-
-/* ----------- TOTAIS ----------- */
-
-.totais-box {
-    margin: 15px 0;
-    padding: 15px;
-    background: #1E1E1E;
-    border-left: 4px solid #9B4BFF;
-    border-radius: 8px;
-}
-
-.totais-box p {
-    margin: 8px 0;
+    border: 2px solid #7a00f5;
     font-size: 16px;
 }
 
-/* ----------- TABELA ----------- */
+/* ======= TOTALS ======= */
+
+.totals p {
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+/* ======= TABLE DESKTOP ======= */
 
 .table-wrapper {
-    width: 100%;
     overflow-x: auto;
 }
 
@@ -81,36 +124,22 @@ table {
     width: 100%;
     min-width: 900px;
     border-collapse: collapse;
-    background: #1E1E1E;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-th, td {
-    padding: 14px;
-    border-bottom: 1px solid #444;
-    font-size: 15px;
 }
 
 th {
-    background: #7A00F5;
+    background: #7a00f5;
+    padding: 14px;
+    text-align: left;
 }
 
-/* Categoria visual */
-.categoria-header {
-    background: #9B4BFF !important;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 12px !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: white;
+td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
 }
 
 .action-btn {
-    padding: 7px 12px;
-    border-radius: 4px;
-    margin-right: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
     font-size: 14px;
 }
 
@@ -118,117 +147,53 @@ th {
     background: #0099ff;
 }
 
-.edit-btn:hover {
-    background: #33adff;
-}
-
 .delete-btn {
     background: #ff0033;
 }
 
+/* ======= MOBILE LIST ======= */
+
+.mobile-table {
+    display: none;
+}
+
+@media (max-width: 750px) {
+
+    .table-wrapper { display: none; }
+
+    .mobile-table {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .mob-item {
+        background: #111;
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid #7a00f5;
+    }
+
+    .mob-top {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+
+    .mob-actions {
+        margin-top: 10px;
+        display: flex;
+        gap: 8px;
+    }
+}
+
+/* EXPORTAR */
+
 .export-btn {
     background: #00aa00;
-    margin-top: 20px;
-    padding: 12px;
-    font-size: 16px;
+    padding: 14px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 17px;
 }
-
-/* TOP ROW (codigo) */
-.top-row {
-    display:flex;
-    gap:10px;
-    align-items:center;
-    margin-bottom:12px;
-}
-.code-badge {
-    background:#222;
-    padding:8px 12px;
-    border-radius:8px;
-    border:1px solid #7A00F5;
-    font-weight:700;
-}
-.small {
-    font-size:13px;
-    opacity:0.9;
-}
-
-/* MOBILE */
-
-@media (max-width: 850px) {
-    .form-card {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .form-card {
-        grid-template-columns: 1fr;
-    }
-
-    .form-card input,
-    .form-card select {
-        font-size: 17px;
-        padding: 14px;
-    }
-
-    button {
-        padding: 14px;
-        font-size: 17px;
-    }
-
-    .totais-box {
-        text-align: center;
-    }
-
-    .totais-box p {
-        font-size: 18px;
-    }
-
-    /* =============================
-   MOBILE
-   ============================= */
-
-@media (max-width: 850px) {
-    .form-card {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .form-card {
-        grid-template-columns: 1fr;
-        padding: 16px;
-    }
-
-    .container {
-        width: 95%;
-        padding: 0;
-    }
-
-    h1 {
-        font-size: 22px;
-    }
-
-    .top-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #codigoInput {
-        width: 100%;
-    }
-
-    .top-row button {
-        width: 100%;
-    }
-
-    .export-btn {
-        font-size: 16px;
-    }
-
-    table {
-        min-width: 800px;
-    }
-}
-}
-
