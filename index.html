@@ -1,112 +1,62 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Controle Doméstico</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+<div class="container">
 
-    <!-- XLSX -->
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-</head>
+    <h2>caderno de Gastos</h2>
 
-<body>
-
-<header class="topbar">
-    <div class="code-box">
-        <span>Código da Lista</span>
-        <strong id="codigoBadge">—</strong>
-    </div>
-
-    <div class="code-actions">
-        <input id="codigoInput" placeholder="Digite um código">
-        <button id="loadBtn">Carregar</button>
-        <button id="newBtn" class="accent">Novo</button>
-        <button id="copyCodeBtn">Copiar</button>
-    </div>
-</header>
-
-
-<main class="container">
-
-    <h1 class="title">Controle de Gastos</h1>
-
-    <!-- FORM -->
-    <div class="card form-card">
-
+    <div class="card">
+        <label>Data</label>
         <input type="date" id="data">
 
-        <input type="text" id="descricao" placeholder="Descrição">
+        <label>Descrição</label>
+        <input type="text" id="descricao">
 
-        <select id="categoria">
-            <option disabled selected>Categoria</option>
-            <option>Mercado</option>
-            <option>Contas da Casa</option>
-            <option>Transporte</option>
-            <option>Saúde</option>
-            <option>Lazer</option>
-            <option>Assinaturas</option>
-            <option>Educação</option>
-            <option>Renda / Entrada</option>
-            <option>Outros</option>
-        </select>
+        <label>Categoria</label>
+        <select id="categoria">...</select>
 
-        <select id="tipo">
-            <option value="Saída">Saída</option>
-            <option value="Entrada">Entrada</option>
-        </select>
+        <label>Motivo</label>
+        <select id="motivo">...</select>
 
-        <input type="number" id="valor" placeholder="Valor (R$)" step="0.01">
+        <label>Valor (R$)</label>
+        <input type="number" id="valor">
 
-        <select id="pagamento">
-            <option>PIX</option>
-            <option>Débito</option>
-            <option>Crédito</option>
-            <option>Dinheiro</option>
-        </select>
+        <label>Método de Pagamento</label>
+        <select id="metodo">...</select>
 
-        <select id="fixo">
-            <option value="Variável">Variável</option>
-            <option value="Fixo">Fixo</option>
-        </select>
+        <label>Tipo</label>
+        <select id="tipo">...</select>
 
-        <input type="text" id="obs" placeholder="Observações (opcional)">
+        <label>Observações (opcional)</label>
+        <textarea id="obs"></textarea>
 
-        <button id="addBtn" onclick="adicionar()" class="accent">Adicionar</button>
+        <button onclick="adicionarItem()">adicionar</button>
     </div>
 
-
-    <!-- TOTALS -->
-    <div class="card totals">
-        <p>Entradas: <strong id="totalEntradas">0,00</strong></p>
-        <p>Saídas: <strong id="totalSaidas">0,00</strong></p>
-        <p>Saldo: <strong id="saldo">0,00</strong></p>
-    </div>
-
-    <!-- TABLE -->
     <div class="card">
-        <div class="mobile-table" id="mobileList"></div>
-
-        <div class="table-wrapper">
-            <table id="tabela">
-                <thead>
-                    <tr>
-                        <th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th>
-                        <th>Valor</th><th>Pagamento</th><th>Fixo/Var</th><th>Obs</th><th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
+        <p>Entradas: <strong>0,00</strong></p>
+        <p>Saídas: <strong>100,00</strong></p>
+        <p>Saldo: <strong>-100,00</strong></p>
     </div>
 
-    <button class="export-btn" onclick="exportarXLSX()">Exportar XLSX</button>
+    <button class="btn-green">Exportar XLSX</button>
 
-    <h2>Preview da Planilha</h2>
-    <div id="preview" class="card"></div>
+    <h3>Pré-visualização da Planilha</h3>
 
-</main>
+    <div class="table-preview">
+        <table id="previewTable">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Data</th>
+                    <th>Tipo</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Método</th>
+                    <th>Var/ Fix</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- preenchido pelo script -->
+            </tbody>
+        </table>
+    </div>
 
-<script type="module" src="script.js"></script>
-</body>
-</html>
+</div>
