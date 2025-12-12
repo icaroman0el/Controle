@@ -1,62 +1,144 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle Doméstico</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <link rel="stylesheet" href="style.css">
 
-    <h2>Caderno de Gastos</h2>
+    <!-- XLSX -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
 
-    <div class="card">
-        <label>Data</label>
-        <input type="date" id="data">
-
-        <label>Descrição</label>
-        <input type="text" id="descricao">
-
-        <label>Categoria</label>
-        <select id="categoria">...</select>
-
-        <label>Motivo</label>
-        <select id="motivo">...</select>
-
-        <label>Valor (R$)</label>
-        <input type="number" id="valor">
-
-        <label>Método de Pagamento</label>
-        <select id="metodo">...</select>
-
-        <label>Tipo</label>
-        <select id="tipo">...</select>
-
-        <label>Observações (opcional)</label>
-        <textarea id="obs"></textarea>
-
-        <button onclick="adicionarItem()">Adicionar</button>
+<header class="topbar">
+  <div class="top-inner">
+    <div class="code-area">
+      <div class="small">Código da Lista</div>
+      <div class="code-badge" id="codigoBadge">—</div>
     </div>
 
-    <div class="card">
-        <p>Entradas: <strong>0,00</strong></p>
-        <p>Saídas: <strong>100,00</strong></p>
-        <p>Saldo: <strong>-100,00</strong></p>
+    <div class="code-controls">
+      <input id="codigoInput" placeholder="Entrar com outro código" />
+      <button id="loadBtn" class="btn small-btn">Carregar</button>
+      <button id="newBtn" class="btn accent small-btn">Gerar novo</button>
+      <button id="copyCodeBtn" class="btn small-btn" title="Copiar código">Copiar</button>
     </div>
+  </div>
+</header>
 
-    <button class="btn-green">Exportar XLSX</button>
+<main class="container">
 
-    <h3>Pré-visualização da Planilha</h3>
+  <h1>Controle de Gastos Domésticos</h1>
 
-    <div class="table-preview">
-        <table id="previewTable">
-            <thead>
-                <tr>
-                    <th>Categoria</th>
-                    <th>Data</th>
-                    <th>Tipo</th>
-                    <th>Descrição</th>
-                    <th>Valor</th>
-                    <th>Método</th>
-                    <th>Var/ Fix</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- preenchido pelo script -->
-            </tbody>
-        </table>
-    </div>
+  <!-- FORM -->
+  <section class="card form-card">
+      <div class="field">
+          <label for="data">Data</label>
+          <input type="date" id="data">
+      </div>
 
-</div>
+      <div class="field">
+          <label for="descricao">Descrição</label>
+          <input type="text" id="descricao" placeholder="Descrição">
+      </div>
+
+      <div class="field">
+          <label for="categoria">Categoria</label>
+          <select id="categoria">
+              <option value="" disabled selected>Categoria</option>
+              <option>Mercado</option>
+              <option>Contas da Casa</option>
+              <option>Transporte</option>
+              <option>Saúde</option>
+              <option>Lazer</option>
+              <option>Assinaturas</option>
+              <option>Educação</option>
+              <option>Renda</option>
+              <option>Outros</option>
+          </select>
+      </div>
+
+      <div class="field">
+          <label for="tipo">Tipo</label>
+          <select id="tipo">
+              <option value="Saída">Saída</option>
+              <option value="Entrada">Entrada</option>
+          </select>
+      </div>
+
+      <div class="field">
+          <label for="valor">Valor (R$)</label>
+          <input type="number" id="valor" placeholder="0.00" step="0.01">
+      </div>
+
+      <div class="field">
+          <label for="pagamento">Pagamento</label>
+          <select id="pagamento">
+              <option>PIX</option>
+              <option>Débito</option>
+              <option>Crédito</option>
+              <option>Dinheiro</option>
+          </select>
+      </div>
+
+      <div class="field">
+          <label for="fixo">Fixo / Variável</label>
+          <select id="fixo">
+              <option value="Variável">Variável</option>
+              <option value="Fixo">Fixo</option>
+          </select>
+      </div>
+
+      <div class="field full">
+          <label for="obs">Observações (opcional)</label>
+          <input type="text" id="obs" placeholder="Observações">
+      </div>
+
+      <div class="field full">
+          <button id="addBtn" onclick="adicionar()" class="btn accent">Adicionar</button>
+      </div>
+  </section>
+
+  <!-- TOTAIS -->
+  <section class="card totals-box">
+      <div class="totals-row">
+          <div><small>Total de Entradas</small><div class="total-value">R$ <span id="totalEntradas">0,00</span></div></div>
+          <div><small>Total de Saídas</small><div class="total-value">R$ <span id="totalSaidas">0,00</span></div></div>
+          <div><small>Saldo</small><div class="total-value">R$ <span id="saldo">0,00</span></div></div>
+      </div>
+  </section>
+
+  <!-- TABELA / LISTA -->
+  <section class="card">
+      <div class="table-wrapper">
+          <table id="tabela" class="data-table" aria-label="Tabela de gastos">
+              <thead>
+                  <tr>
+                      <th>Data</th>
+                      <th>Descrição</th>
+                      <th>Categoria</th>
+                      <th>Tipo</th>
+                      <th>Valor</th>
+                      <th>Pagamento</th>
+                      <th>Fixo/Variável</th>
+                      <th>Obs</th>
+                      <th>Ações</th>
+                  </tr>
+              </thead>
+              <tbody></tbody>
+          </table>
+      </div>
+  </section>
+
+  <button class="btn green export-btn" onclick="exportarXLSX()">Exportar XLSX</button>
+
+  <h2 style="margin-top: 22px;">Preview da Planilha</h2>
+
+  <section id="preview" class="card table-preview" aria-live="polite"></section>
+
+</main>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
