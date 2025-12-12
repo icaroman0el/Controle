@@ -209,8 +209,8 @@ function atualizarTabela() {
             <td>${item.fixo}</td>
             <td>${item.obs}</td>
             <td>
-                <button class="action-btn edit-btn" onclick="editar(${realIndex})">Editar</button>
-                <button class="action-btn delete-btn" onclick="apagar(${realIndex})">Excluir</button>
+                <button class="action-btn edit-btn" onclick="editar(${realIndex})">✏️</button>
+                <button class="action-btn delete-btn" onclick="apagar(${realIndex})">🗑️</button>
             </td>
         `;
 
@@ -347,5 +347,6 @@ window.adicionar = adicionar;
 window.editar = editar;
 window.apagar = apagar;
 window.exportarXLSX = exportarXLSX;
+
 
 
