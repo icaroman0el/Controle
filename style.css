@@ -19,40 +19,68 @@ body {
     padding: 0 16px 48px;
 }
 
-/* ===== TOPBAR ===== */
+/* ===========================
+   NAVBAR MINIMALISTA (NOVO)
+   =========================== */
+
 .topbar {
     width: 100%;
-    padding: 12px;
+    padding: 16px 20px;
     position: sticky;
     top: 0;
-    z-index: 30;
-    background: rgba(20,12,35,0.45);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    backdrop-filter: blur(10px);
+    z-index: 99;
+
+    background: rgba(20, 12, 35, 0.35);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
 }
 
 .top-inner {
-    display:flex;
-    gap:12px;
-    align-items:center;
-    justify-content:space-between;
-    max-width: 1080px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 540px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    align-items: center;
+    text-align: center;
 }
 
-/* Código */
+.code-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.small {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-bottom: 2px;
+}
+
 .code-badge {
-    margin-top:6px;
-    padding:8px 12px;
-    border-radius: 10px;
+    padding: 8px 14px;
     background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(122,0,245,0.25);
-    color: #f2eaff;
-    font-weight:700;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: 700;
     letter-spacing: 1px;
 }
 
-/* Inputs */
+.code-controls {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .code-controls input {
     padding: 10px 12px;
     border-radius: 12px;
@@ -60,9 +88,30 @@ body {
     background: rgba(15,12,20,0.6);
     color: #fff;
     font-size: 14px;
+    width: 190px;
+    text-align: center;
 }
 
-/* ===== BUTTONS ===== */
+/* MOBILE */
+@media (max-width: 520px) {
+    .topbar {
+        padding: 16px 14px;
+    }
+
+    .code-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .code-controls input {
+        width: 100%;
+    }
+}
+
+/* ===========================
+   BUTTONS
+   =========================== */
+
 .btn {
     display:flex;
     align-items:center;
@@ -70,22 +119,25 @@ body {
     gap:6px;
     padding: 10px 14px;
     border-radius: 12px;
-    border: none;
+    border:none;
     background: rgba(122,0,245,0.90);
     color: #fff;
-    cursor: pointer;
-    font-weight: 700;
+    cursor:pointer;
+    font-weight:700;
     box-shadow: 0 8px 22px rgba(122,0,245,0.25);
-    transition: .15s ease;
+    transition:.15s ease;
 }
 
 .btn:hover { transform: translateY(-3px); }
 .btn:active { transform: translateY(0) scale(.96); }
 
 .accent { background: linear-gradient(180deg,#b88cff,#7a00f5); }
-.green { background: linear-gradient(180deg,#3be67a,#12a344); }
+.green  { background: linear-gradient(180deg,#3be67a,#12a344); }
 
-/* ===== CARDS ===== */
+/* ===========================
+   CARDS
+   =========================== */
+
 .card {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.06);
@@ -96,7 +148,10 @@ body {
     backdrop-filter: blur(10px);
 }
 
-/* ===== FORM ===== */
+/* ===========================
+   FORM
+   =========================== */
+
 .form-card {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -125,7 +180,10 @@ label {
     box-shadow: 0 0 10px rgba(122,0,245,0.3);
 }
 
-/* ===== TABLE ===== */
+/* ===========================
+   TABLE
+   =========================== */
+
 .table-wrapper { overflow-x: auto; }
 
 .data-table {
@@ -133,25 +191,22 @@ label {
     border-collapse: collapse;
 }
 
-/* Cabeçalho mais bonito */
 .data-table thead th {
     padding: 12px;
     background: linear-gradient(90deg,#7a00f5,#ba84ff);
-    color: #fff;
-    font-size: 14px;
-    border-bottom: 1px solid rgba(0,0,0,0.25);
+    color:#fff;
+    font-size:14px;
+    border-bottom:1px solid rgba(0,0,0,0.25);
 }
 
-/* Células da tabela — AGORA COM MAIS ESPAÇO */
 .data-table tbody td {
     padding: 14px 10px;
     border-bottom: 1px solid rgba(255,255,255,0.05);
-    color: #f6efff;
-    font-size: 15px;
-    line-height: 1.45;
+    color:#f6efff;
+    font-size:15px;
+    line-height:1.45;
 }
 
-/* Linhas mais destacadas */
 .data-table tbody tr {
     transition: background .15s;
 }
@@ -159,7 +214,7 @@ label {
     background: rgba(255,255,255,0.06);
 }
 
-/* Separadores por categoria */
+/* Categoria separadora */
 .categoria-header {
     background: rgba(150,70,255,0.18);
     font-weight: 700;
@@ -169,19 +224,19 @@ label {
     letter-spacing: .5px;
 }
 
-/* Botões de ação */
+/* botões ação */
 .action-btn {
     padding: 8px 10px;
     border-radius: 10px;
     cursor:pointer;
-    font-size: 17px;
-    border: none;
+    font-size: 18px;
+    border:none;
 }
 
-.edit-btn { background: rgba(0,150,255,0.35); }
+.edit-btn   { background: rgba(0,150,255,0.35); }
 .delete-btn { background: rgba(255,50,70,0.35); }
 
-/* ===== MOBILE ===== */
+/* MOBILE ajustes */
 @media (max-width: 520px) {
     .data-table tbody td {
         font-size: 14px;
@@ -189,94 +244,4 @@ label {
     }
     .card { padding: 12px; }
     .form-card { grid-template-columns: 1fr; }
-
-/* ===========================
-   NAVBAR MINIMALISTA (NOVO)
-   =========================== */
-
-.topbar {
-    width: 100%;
-    padding: 14px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 99;
-
-    /* fundo glass minimalista */
-    background: rgba(20, 12, 35, 0.35);
-    backdrop-filter: blur(14px);
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: center;
-}
-
-.top-inner {
-    width: 100%;
-    max-width: 540px;
-
-    /* layout minimalista */
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    align-items: center;
-    text-align: center;
-}
-
-/* Texto “Código da Lista” */
-.code-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.small {
-    font-size: 13px;
-    opacity: 0.8;
-    margin-bottom: 2px;
-}
-
-/* O quadradinho com o código */
-.code-badge {
-    padding: 8px 14px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-/* Botões e input da direita */
-.code-controls {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.code-controls input {
-    width: 190px;
-    text-align: center;
-}
-
-/* Modo mobile — deixa tudo 100% centralizado */
-@media (max-width: 520px) {
-    .topbar {
-        padding: 16px 14px;
-    }
-
-    .code-controls {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .code-controls input {
-        width: 100%;
-    }
-}
-
-   
 }
