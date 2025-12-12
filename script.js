@@ -1,5 +1,5 @@
-// script.js (módulo)
-// Usa Firebase via CDN (módulos)
+// script.js (módulo atualizado e otimizado)
+// Firebase via CDN (Módulos)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
   getFirestore,
@@ -9,7 +9,9 @@ import {
   onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* ====== firebaseConfig ====== */
+/* ===========================================================
+   🔥 Configuração Firebase
+   =========================================================== */
 const firebaseConfig = {
   apiKey: "AIzaSyBgsOEy1BkqfM_6aC3e00ZjA9wLRiIJa3c",
   authDomain: "controle-a4656.firebaseapp.com",
@@ -20,44 +22,51 @@ const firebaseConfig = {
   measurementId: "G-KJYCR3GSBW"
 };
 
-/* ====== Inicializa Firebase ====== */
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-/* ====== Estado ====== */
+/* ===========================================================
+   📦 Estado
+   =========================================================== */
 let editIndex = null;
 let dados = [];
 let codigo = null;
 let saveTimeout = null;
 const SAVE_DELAY = 700;
 
-/* ====== Elementos ====== */
-const codigoBadge = document.getElementById('codigoBadge');
-const codigoInput = document.getElementById('codigoInput');
-const loadBtn = document.getElementById('loadBtn');
-const newBtn = document.getElementById('newBtn');
-const copyCodeBtn = document.getElementById('copyCodeBtn');
+/* ===========================================================
+   🖥️ Elementos
+   =========================================================== */
+const codigoBadge = document.getElementById("codigoBadge");
+const codigoInput = document.getElementById("codigoInput");
+const loadBtn = document.getElementById("loadBtn");
+const newBtn = document.getElementById("newBtn");
+const copyCodeBtn = document.getElementById("copyCodeBtn");
 
-/* ====== UI ====== */
-loadBtn.addEventListener('click', () => {
+/* ===========================================================
+   🎛️ UI - Botões
+   =========================================================== */
+loadBtn.addEventListener("click", () => {
   const c = codigoInput.value.trim();
-  if (!c) return alert('Digite um código para carregar.');
+  if (!c) return alert("Digite um código para carregar.");
   carregarCodigo(c);
 });
 
-newBtn.addEventListener('click', () => gerarECriar());
+newBtn.addEventListener("click", () => gerarECriar());
 
-copyCodeBtn.addEventListener('click', () => {
-  if (!codigo) return alert('Nenhum código gerado ainda.');
-  navigator.clipboard.writeText(codigo).then(() => alert('Código copiado!'));
+copyCodeBtn.addEventListener("click", () => {
+  if (!codigo) return alert("Nenhum código gerado.");
+  navigator.clipboard.writeText(codigo).then(() => alert("Código copiado!"));
 });
 
-/* ====== Funções Firestore ====== */
-
+/* ===========================================================
+   🔐 Firebase - Funções
+   =========================================================== */
 function gerarCodigo(tamanho = 6) {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let s = '';
-  for (let i = 0; i < tamanho; i++) s += chars.charAt(Math.floor(Math.random() * chars.length));
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let s = "";
+  for (let i = 0; i < tamanho; i++)
+    s += chars.charAt(Math.floor(Math.random() * chars.length));
   return s;
 }
 
@@ -66,7 +75,7 @@ async function gerarECriar() {
   codigo = novo;
   codigoBadge.textContent = codigo;
 
-  const docRef = doc(db, 'listas', codigo);
+  const docRef = doc(db, "listas", codigo);
   const snap = await getDoc(docRef);
 
   if (!snap.exists()) {
@@ -80,13 +89,13 @@ async function carregarCodigo(c) {
   codigo = c;
   codigoBadge.textContent = codigo;
 
-  const docRef = doc(db, 'listas', codigo);
+  const docRef = doc(db, "listas", codigo);
   const snap = await getDoc(docRef);
 
   if (!snap.exists()) {
-    if (!confirm('Código não encontrado. Criar nova lista?')) {
+    if (!confirm("Código não encontrado. Criar nova lista?")) {
       codigo = null;
-      codigoBadge.textContent = '—';
+      codigoBadge.textContent = "—";
       return;
     }
     await setDoc(docRef, { gastos: [] });
@@ -97,20 +106,25 @@ async function carregarCodigo(c) {
 
 function escutarFirestore() {
   if (!codigo) return;
-  const docRef = doc(db, 'listas', codigo);
+
+  const docRef = doc(db, "listas", codigo);
 
   if (window.__UNSUBSCRIBE__) window.__UNSUBSCRIBE__();
 
-  window.__UNSUBSCRIBE__ = onSnapshot(docRef, (snapshot) => {
-    const data = snapshot.data();
-    dados = data?.gastos ?? [];
+  window.__UNSUBSCRIBE__ = onSnapshot(
+    docRef,
+    (snapshot) => {
+      const data = snapshot.data();
+      dados = data?.gastos ?? [];
 
-    dados = dados.map(d => ({ ...d, valor: Number(d.valor || 0) }));
+      dados = dados.map((d) => ({ ...d, valor: Number(d.valor || 0) }));
 
-    atualizarTabela();
-    atualizarTotais();
-    atualizarPreview();
-  }, (err) => console.error(err));
+      atualizarTabela();
+      atualizarTotais();
+      atualizarPreview();
+    },
+    (err) => console.error(err)
+  );
 }
 
 function salvarNoFirestore() {
@@ -120,16 +134,17 @@ function salvarNoFirestore() {
 
   saveTimeout = setTimeout(async () => {
     try {
-      const docRef = doc(db, 'listas', codigo);
+      const docRef = doc(db, "listas", codigo);
       await setDoc(docRef, { gastos: dados });
     } catch (err) {
-      console.error('Erro ao salvar:', err);
+      console.error("Erro ao salvar:", err);
     }
   }, SAVE_DELAY);
 }
 
-/* ====== Funções principais ====== */
-
+/* ===========================================================
+   ➕ Adicionar Registro
+   =========================================================== */
 function adicionar() {
   const registro = {
     data: document.getElementById("data").value,
@@ -149,11 +164,11 @@ function adicionar() {
 
   if (!codigo) {
     const gerar = confirm("Nenhum código ativo. Gerar agora?");
-    if (gerar) gerarECriar(); else return;
+    if (gerar) gerarECriar();
+    else return;
   }
 
-  if (editIndex === null)
-    dados.push(registro);
+  if (editIndex === null) dados.push(registro);
   else {
     dados[editIndex] = registro;
     editIndex = null;
@@ -165,40 +180,39 @@ function adicionar() {
   atualizarPreview();
   salvarNoFirestore();
 
-  document.getElementById('descricao').value = '';
-  document.getElementById('valor').value = '';
-  document.getElementById('obs').value = '';
+  // Limpar inputs
+  document.getElementById("descricao").value = "";
+  document.getElementById("valor").value = "";
+  document.getElementById("obs").value = "";
 }
 
-/*  
-   ============================================================
-   🔧 AQUI ESTÁ A PARTE CORRIGIDA COM ÍCONES
-   ============================================================
-*/
-
+/* ===========================================================
+   📋 Tabela (VISUAL MELHORADO)
+   =========================================================== */
 function atualizarTabela() {
   const tbody = document.querySelector("#tabela tbody");
   tbody.innerHTML = "";
 
   let dadosOrdenados = [...dados].sort((a, b) =>
-    (a.categoria || '').localeCompare(b.categoria || '')
+    (a.categoria || "").localeCompare(b.categoria || "")
   );
 
   let categoriaAtual = null;
 
   dadosOrdenados.forEach((item) => {
-
     if (item.categoria !== categoriaAtual) {
       categoriaAtual = item.categoria;
 
       const catRow = document.createElement("tr");
       catRow.innerHTML = `
-        <td colspan="9" class="categoria-header">${categoriaAtual || "Sem categoria"}</td>
+        <td colspan="9" class="categoria-header">
+          <strong>${categoriaAtual || "Sem categoria"}</strong>
+        </td>
       `;
       tbody.appendChild(catRow);
     }
 
-    const realIndex = dados.findIndex(d => d === item);
+    const realIndex = dados.findIndex((d) => d === item);
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -210,21 +224,25 @@ function atualizarTabela() {
       <td>${item.pagamento}</td>
       <td>${item.fixo}</td>
       <td>${item.obs}</td>
-      <td>
-          <button class="action-btn edit-btn" onclick="editar(${realIndex})">✏️</button>
-          <button class="action-btn delete-btn" onclick="apagar(${realIndex})">🗑️</button>
+      <td class="actions-cell">
+        <button class="action-btn edit-btn" onclick="editar(${realIndex})">✏️</button>
+        <button class="action-btn delete-btn" onclick="apagar(${realIndex})">🗑️</button>
       </td>
     `;
-
     tbody.appendChild(tr);
   });
 }
 
+/* ===========================================================
+   📊 Totais
+   =========================================================== */
 function atualizarTotais() {
-  let entradas = dados.filter(d => d.tipo === "Entrada")
+  const entradas = dados
+    .filter((d) => d.tipo === "Entrada")
     .reduce((acc, cur) => acc + Number(cur.valor || 0), 0);
 
-  let saidas = dados.filter(d => d.tipo === "Saída")
+  const saidas = dados
+    .filter((d) => d.tipo === "Saída")
     .reduce((acc, cur) => acc + Number(cur.valor || 0), 0);
 
   document.getElementById("totalEntradas").innerText = entradas.toFixed(2);
@@ -232,6 +250,9 @@ function atualizarTotais() {
   document.getElementById("saldo").innerText = (entradas - saidas).toFixed(2);
 }
 
+/* ===========================================================
+   ✏️ Editar / 🗑️ Excluir
+   =========================================================== */
 function editar(i) {
   const item = dados[i];
 
@@ -258,15 +279,18 @@ function apagar(i) {
   }
 }
 
+/* ===========================================================
+   📤 Exportar XLSX
+   =========================================================== */
 function exportarXLSX() {
   let dadosOrdenados = [...dados].sort((a, b) =>
-    (a.categoria || '').localeCompare(b.categoria || '')
+    (a.categoria || "").localeCompare(b.categoria || "")
   );
 
   let wsData = [];
   let categoriaAtual = null;
 
-  dadosOrdenados.forEach(item => {
+  dadosOrdenados.forEach((item) => {
     if (item.categoria !== categoriaAtual) {
       categoriaAtual = item.categoria;
       wsData.push([categoriaAtual]);
@@ -291,21 +315,24 @@ function exportarXLSX() {
   XLSX.writeFile(wb, "gastos_domesticos.xlsx");
 }
 
+/* ===========================================================
+   🖨 Preview da Planilha
+   =========================================================== */
 function atualizarPreview() {
   const div = document.getElementById("preview");
   let dadosOrdenados = [...dados].sort((a, b) =>
-    (a.categoria || '').localeCompare(b.categoria || '')
+    (a.categoria || "").localeCompare(b.categoria || "")
   );
 
   let html = "<table><tbody>";
   let categoriaAtual = null;
 
-  dadosOrdenados.forEach(item => {
+  dadosOrdenados.forEach((item) => {
     if (item.categoria !== categoriaAtual) {
       categoriaAtual = item.categoria;
 
       html += `
-        <tr><td colspan="7" class="categoria-header">${categoriaAtual || 'Sem categoria'}</td></tr>
+        <tr><td colspan="7" class="categoria-header">${categoriaAtual}</td></tr>
         <tr><td colspan="7">------------------------------------</td></tr>
       `;
     }
@@ -327,25 +354,31 @@ function atualizarPreview() {
   div.innerHTML = html;
 }
 
-/* ====== Inicialização ====== */
+/* ===========================================================
+   🚀 Inicialização
+   =========================================================== */
 (async function init() {
   const inicial = gerarCodigo(6);
   codigo = inicial;
   codigoBadge.textContent = codigo;
 
   try {
-    const docRef = doc(db, 'listas', codigo);
+    const docRef = doc(db, "listas", codigo);
     const snap = await getDoc(docRef);
+
     if (!snap.exists()) {
       await setDoc(docRef, { gastos: [] });
     }
+
     escutarFirestore();
   } catch (err) {
-    console.error('Erro init firestore:', err);
+    console.error("Erro init firestore:", err);
   }
 })();
 
-/* ====== Exportar ====== */
+/* ===========================================================
+   🌎 Exportar Funções Globais
+   =========================================================== */
 window.adicionar = adicionar;
 window.editar = editar;
 window.apagar = apagar;
