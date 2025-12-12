@@ -1,9 +1,11 @@
+/* ---- BASE ---- */
 body {
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
-    background: #0f0f0f;
+    background: linear-gradient(135deg, #0a0a0a, #1c002e 60%, #2b004d);
     color: white;
+    min-height: 100vh;
 }
 
 /* Container geral */
@@ -11,75 +13,97 @@ body {
     width: 100%;
     max-width: 480px;
     margin: auto;
-    padding: 16px;
+    padding: 20px;
 }
 
 /* Títulos */
 h2, h3 {
     text-align: center;
     font-weight: 700;
-    color: #b874ff;
-    margin-bottom: 12px;
+    color: #d6b2ff;
+    margin-bottom: 16px;
+    letter-spacing: .5px;
 }
 
-/* Cards escuros */
+/* ---- GLASS CARD ---- */
 .card {
-    background: #1a1a1a;
-    padding: 16px;
-    border-radius: 16px;
-    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    padding: 20px;
+    border-radius: 22px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.3);
 }
 
 /* Labels */
 label {
     font-size: 14px;
-    color: #c2c2c2;
+    color: #e4d8ff;
     margin-left: 4px;
 }
 
-/* Inputs */
+/* ---- INPUTS ---- */
 input, select, textarea {
     width: 100%;
-    background: #0f0f0f;
-    border: 2px solid #7a29ff;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
     padding: 12px;
     color: white;
-    margin-top: 4px;
-    margin-bottom: 12px;
+    margin-top: 6px;
+    margin-bottom: 14px;
     font-size: 15px;
+    transition: 0.2s ease;
 }
 
-/* Botões */
+input:focus, select:focus, textarea:focus {
+    border-color: #b874ff;
+    box-shadow: 0 0 0 3px #b874ff33;
+}
+
+/* ---- BOTÕES ---- */
 button {
     width: 100%;
-    background: #7a29ff;
+    background: linear-gradient(135deg, #a04bff, #7a29ff);
     color: white;
     padding: 14px;
     font-size: 16px;
     border: none;
-    border-radius: 12px;
-    margin-top: 6px;
+    border-radius: 14px;
+    margin-top: 8px;
     cursor: pointer;
     font-weight: 600;
+    letter-spacing: .3px;
+    transition: transform .15s ease, opacity .15s ease;
+    box-shadow: 0 8px 20px rgba(122, 41, 255, 0.4);
+}
+
+button:hover {
+    transform: scale(1.03);
 }
 
 button:active {
+    transform: scale(0.95);
     opacity: 0.7;
 }
 
 /* Botão verde (exportar) */
 .btn-green {
-    background: #28c445;
+    background: linear-gradient(135deg, #32e95a, #1cb743);
+    box-shadow: 0 8px 20px rgba(46, 255, 110, 0.4);
 }
 
-/* Pré-visualização da planilha */
+/* ---- PRÉ-VISUALIZAÇÃO ---- */
 .table-preview {
-    width: 100%;
-    background: #1a1a1a;
-    border-radius: 14px;
-    padding: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    padding: 14px;
+    border-radius: 18px;
     overflow-x: auto;
+    box-shadow: 0 8px 25px rgba(0,0,0,.3);
 }
 
 .table-preview table {
@@ -90,12 +114,12 @@ button:active {
 
 .table-preview th,
 .table-preview td {
-    padding: 8px;
-    border-bottom: 1px solid #333;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     white-space: nowrap;
 }
 
 .table-preview thead {
-    background: #7a29ff33;
+    background: rgba(124, 45, 255, 0.2);
+    backdrop-filter: blur(6px);
 }
-
