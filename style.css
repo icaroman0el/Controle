@@ -1,4 +1,196 @@
 /* ===========================
+   THEME: Glassmorphism (roxo/dark)
+   =========================== */
+
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body {
+    margin: 0;
+    font-family: "Segoe UI", Inter, Arial, sans-serif;
+    background: linear-gradient(180deg, #0b0710 0%, #140b1b 60%);
+    color: #fff;
+}
+
+/* container */
+.container {
+    width: 100%;
+    max-width: 540px;
+    margin: 24px auto;
+    padding: 0 16px 48px;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+    width: 100%;
+    padding: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(20,12,35,0.45);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+}
+
+.top-inner {
+    display:flex;
+    gap:12px;
+    align-items:center;
+    justify-content:space-between;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+/* Código */
+.code-badge {
+    margin-top:6px;
+    padding:8px 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(122,0,245,0.25);
+    color: #f2eaff;
+    font-weight:700;
+    letter-spacing: 1px;
+}
+
+/* Inputs */
+.code-controls input {
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(15,12,20,0.6);
+    color: #fff;
+    font-size: 14px;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(122,0,245,0.90);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 8px 22px rgba(122,0,245,0.25);
+    transition: .15s ease;
+}
+
+.btn:hover { transform: translateY(-3px); }
+.btn:active { transform: translateY(0) scale(.96); }
+
+.accent { background: linear-gradient(180deg,#b88cff,#7a00f5); }
+.green { background: linear-gradient(180deg,#3be67a,#12a344); }
+
+/* ===== CARDS ===== */
+.card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+    backdrop-filter: blur(10px);
+}
+
+/* ===== FORM ===== */
+.form-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+.form-card .full { grid-column: 1 / -1; }
+
+label {
+    font-size: 13px;
+    color: #eddcff;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(15,12,20,0.65);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: #bb8cff;
+    box-shadow: 0 0 10px rgba(122,0,245,0.3);
+}
+
+/* ===== TABLE ===== */
+.table-wrapper { overflow-x: auto; }
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Cabeçalho mais bonito */
+.data-table thead th {
+    padding: 12px;
+    background: linear-gradient(90deg,#7a00f5,#ba84ff);
+    color: #fff;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+
+/* Células da tabela — AGORA COM MAIS ESPAÇO */
+.data-table tbody td {
+    padding: 14px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #f6efff;
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+/* Linhas mais destacadas */
+.data-table tbody tr {
+    transition: background .15s;
+}
+.data-table tbody tr:hover {
+    background: rgba(255,255,255,0.06);
+}
+
+/* Separadores por categoria */
+.categoria-header {
+    background: rgba(150,70,255,0.18);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    letter-spacing: .5px;
+}
+
+/* Botões de ação */
+.action-btn {
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor:pointer;
+    font-size: 17px;
+    border: none;
+}
+
+.edit-btn { background: rgba(0,150,255,0.35); }
+.delete-btn { background: rgba(255,50,70,0.35); }
+
+/* ===== MOBILE ===== */
+@media (max-width: 520px) {
+    .data-table tbody td {
+        font-size: 14px;
+        padding: 12px 8px;
+    }
+    .card { padding: 12px; }
+    .form-card { grid-template-columns: 1fr; }
+
+/* ===========================
    NAVBAR MINIMALISTA (NOVO)
    =========================== */
 
@@ -84,4 +276,7 @@
     .code-controls input {
         width: 100%;
     }
+}
+
+   
 }
